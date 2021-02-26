@@ -1,0 +1,55 @@
+.uploadthumbscontainer {
+	
+	border: 1px solid;
+	border-color: #AAAAAA;
+	width: 650px;
+	height: 130px;
+
+	overflow-y: hidden;
+	overflow-x: auto;
+	white-space: nowrap;
+}
+
+.thumb {
+	display: inline-block;
+	width: 130px;
+	height: 120px;
+	margin-right: 6px;
+	margin-left: 6px;
+	overflow: hidden;
+
+}
+
+.thumb div {
+	text-align: center;
+}
+
+.thumb:hover {
+	background-color: #DDDDDD;
+}
+
+.thumb div img {
+  width: 120px; /* Set a small width */
+}
+
+.thumb-name {
+	text-align: center;
+	width: 100%;
+	font-size: 10pt;
+	font-family: sans-serif;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	margin: 4px;
+}
+
+
+/*
+.uploadthumbsinnercontainer {
+	white-space: nowrap;
+}
+*/
+
+
+
+
+

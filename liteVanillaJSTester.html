@@ -1,0 +1,81 @@
+<HTML>
+
+<HEAD>
+<TITLE>Vanilla JS Tester</TITLE>
+
+<script type="text/javascript" src="js/litevanillauploader.js"></script>
+<link  href="css/upload.css" rel="stylesheet" type="text/css" />
+
+
+<!-- Showcase -->
+<script type="text/javascript" src="js/showcase.js"></script>
+<link  href="css/showcase.css" rel="stylesheet" type="text/css" />
+
+</HEAD>
+
+<BODY>
+
+
+
+<H1>Lite VanillaJS Test Showcase</H1>
+
+
+<H3>Example 1 - Upload to Multipart service</H3>
+
+<FORM action="">
+destinationPath: <input type="text" name="destinationPath" id="destinationPath" value="/local/fotos" size=60>
+
+<P></P>
+
+<input id="uploadButton" type="button" value="Select Files"/>
+
+<P>Upload Area:</P>
+<DIV id="uploadArea"></DIV>
+
+<P>
+<input id="saveButton" type="button" value="Salvar" disabled="disabled"/>
+</FORM>
+
+<script type="text/javascript">
+//<![CDATA[
+
+/* alterna o botão */
+var fnReceiveStatus = function(uploadController) {
+	if (uploadController.totalArqsEnviados>0) {
+		document.querySelector("#saveButton").disabled = "";
+	} else {
+		document.querySelector("#saveButton").disabled = "disabled";
+	}
+}
+
+var uploadController = new UploadFotoFileController();
+uploadController.multipartValues=
+	{ "destinationFilePath" : document.querySelector("#destinationPath").value };
+
+uploadController.multipartPostURL="http://localhost:8080/uploadFile";
+
+uploadController.maxFileSize = 9.77; // (10000 KB / 1024)
+uploadController.allowedFileExtensions = ".jpg,.png,.bmp,.jpeg";
+uploadController.maxFiles = 8;
+uploadController.container=document.querySelector("#uploadArea");
+uploadController.uploadButton=document.querySelector("#uploadButton");
+uploadController.fnUpdateStatus=fnReceiveStatus;
+
+uploadController.doCompression=true;
+uploadController.maxConvertedSize=150 * 1024; // in bytes
+
+
+uploadController.init();				   
+
+document.querySelector("#saveButton").onclick=function() {
+	/* Script para salvar. Os nomes dos arquivos enviados ficam disponíveis neste método */
+	alert(uploadController.getUploadedFileNames());
+	alert("Now, do what you want.");
+}
+
+//]]>
+</script>
+	
+	
+	</BODY>
+</HTML>

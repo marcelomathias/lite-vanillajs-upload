@@ -1,4 +1,5 @@
-# lite-vanillajs-upload
+# lite-vanillajs-uploader
+
 Lightweight and simple upload and image compression component
 
 [Click here to see that working!](https://marcelomathias.github.io/lite-vanillajs-uploader/liteVanillaJSTester.html)
@@ -6,7 +7,7 @@ Lightweight and simple upload and image compression component
 
 ## Also, does an awesome client-side image resize!
 
-Using canvas component, **lite-vanillajs-upload** can resize images! Isn't it nice?
+Using canvas component, **lite-vanillajs-uploader* can resize images! Isn't it nice?
 
 ## TO-DO list
 

@@ -26,9 +26,9 @@ We like vanilla! With simple native resources, we can do an ellegant and simple 
 
 ## TO-DO list
 
-Beautifully wrap some gift can be exhausting, sometimes. Despite that, I couldn't wait for it! Fortunatelly, we can do some polishing as we go.
+Beautifully wrap a toughtful gift can be exhausting, sometimes. Despite of that, I couldn't wait for it! Fortunatelly, we can do some polishing as we go.
 
-Things what I wanna do very soon:
+Things what I wanna accomplish very soon:
 
 * Equalize language in names of functions and variables
 * Figure out how to serve some back-end multipart service under https :\

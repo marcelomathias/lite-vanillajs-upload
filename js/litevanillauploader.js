@@ -274,7 +274,13 @@ function UploadFotoFileController() {
 		
 		})
 
-		xhr.send(formData);
+		try {
+			xhr.send(formData);
+		} catch (e) {
+			this.controller.fnEmitirErro("Erro no upload " + this.fileName);
+			this.controller.filaUpload--;
+			this.controller.updateStatusUpload();
+		}
 
 	}
 	

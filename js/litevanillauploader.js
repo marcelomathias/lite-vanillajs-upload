@@ -232,6 +232,13 @@ function UploadFotoFileController() {
 
 		xhr.open('POST', this.multipartPostURL);
 //		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+		xhr.onerror = function() {
+			this.controller.fnEmitirErro("Erro no upload " + this.fileName);
+			this.controller.filaUpload--;
+			this.controller.updateStatusUpload();
+		};
+		
 		xhr.onload = function() {
 			// if (xhr.status === 200 && xhr.responseText !== newName) {
 			// 	alert('Something went wrong.  Name is now ' + xhr.responseText);

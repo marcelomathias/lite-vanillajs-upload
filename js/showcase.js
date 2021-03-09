@@ -1,51 +1,83 @@
 var ultimoId = 0;
+var hostSHOWCASE = "https://www.longocaminho.com.br";
+//var hostSHOWCASE = "http://localhost";
 
-function feedbackDoClone() {
+function criouElemento() {
+    if (document.querySelector("body")!=null) {
 
-    
-    $(document.body).append("<BR><BR>Arquivos Enviados:<BR><DIV><TABLE border=1 style='border-collapse: collapse'><THEAD><TH>Caminho</TH><TH>Nome</TH><TH>Preview</TH></THEAD><TBODY id='FDBK'></TBODY></TABLE></DIV>");
-    window.setInterval(checarArquivos, 5000);
+        if (document.querySelector("#showcase")==null) {
+            var myDiv = document.createElement("div");
+            myDiv.id = "showcase";
+            myDiv.innerHTML = "<BR><BR>Sent Files (they're in the server):<BR><DIV><TABLE border=1 style='border-collapse: collapse'><THEAD><TH>Path</TH><TH>File name</TH><TH>Preview</TH></THEAD><TBODY id='FDBK'></TBODY></TABLE></DIV>";
+            document.querySelector("body").appendChild(myDiv);
+        }
 
-
+    }
 }
+window.setInterval(checarArquivos, 5000);
+window.setTimeout(checarArquivos, 200);
+
 
 function checarArquivos() {
 
-        if (jQuery(".endpointRestUrl").val().indexOf("3.129.238.124:8080") == -1) return;
+    if (criouElemento()) return;
 
-		jQuery.ajax({
-            url: "http://3.129.238.124:8080/api/filesystem/listaarquivos?ultimoId="+ultimoId,
-            type: "GET",
-			contentType: "application/json; charset=utf-8",
-			crossDomain: true,
-			dataType: "json",
+        if (uploadController.multipartPostURL.indexOf(hostSHOWCASE) == -1) return;
+
+
+
+
+
+		var xhr = new XMLHttpRequest();
+
+		xhr.open('GET', hostSHOWCASE+"/upload/api/filesystem/listaarquivos?ultimoId="+ultimoId);
+
+		xhr.onerror = function() {
 
             
-			success: function(data, status,jqXHR) {
+		};
+		
+		xhr.onload = function() {
+			// if (xhr.status === 200 && xhr.responseText !== newName) {
+			// 	alert('Something went wrong.  Name is now ' + xhr.responseText);
+			// }
+			if (xhr.status !== 200) {
+                
+			} else {
+
+				var data = JSON.parse(xhr.responseText);
 
                 for (var i=0; i<data.length; i++) {
 
                     var img = "<img src='data:image/png;base64, "+data[i].ConteudoBase64+"'>";
-                    $("#FDBK").prepend(
-                        "<TR><TD>" + data[i].DiretorioArquivo + "</TD><TD>" + data[i].NomeArquivo + "</TD><TD id='FDBKIMG" + data[i].id + "'>"+ img +"</TD></TR>"
+                    var esteTr = document.createElement("tr");
+                    esteTr.innerHTML = 
+                        "<TD>" + data[i].DiretorioArquivo + "</TD><TD>" + data[i].NomeArquivo + "</TD><TD id='FDBKIMG" + data[i].id + "'>"+ img +"</TD>";
+                    document.querySelector("#FDBK").prepend(
+                        esteTr
                     );
 
                     if (data[i].id > ultimoId) {
                         ultimoId=data[i].id
                     }
 
-                    var ow = $("#FDBKIMG"+data[i].id+" IMG")[0].offsetWidth;
-                    var oh = $("#FDBKIMG"+data[i].id+" IMG")[0].offsetHeight;
+                    var ow = document.querySelector("#FDBKIMG"+data[i].id+" IMG").offsetWidth;
+                    var oh = document.querySelector("#FDBKIMG"+data[i].id+" IMG").offsetHeight;
 
-                    $("#FDBKIMG"+data[i].id+" IMG").css("width", 120);
-                    $("#FDBKIMG"+data[i].id+" IMG").css("height", 120 / ow * oh);
+                    document.querySelector("#FDBKIMG"+data[i].id+" IMG").style.width=120;
+                    document.querySelector("#FDBKIMG"+data[i].id+" IMG").style.height= 120 / ow * oh;
 
                 }
-                
-			},
-			error: function (jqXHR, status) {
-                
+
 			}
-		});
+        };
+
+		try {
+			xhr.send(null);
+		} catch (e) {
+            
+		}
+
+
 
 }

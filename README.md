@@ -30,15 +30,13 @@ Beautifully wrap a toughtful gift can be exhausting, sometimes. Despite of that,
 
 Things what I wanna accomplish very soon:
 
-* post and example of uploading to an REST service
-* post and example of uploading to google cloud storage
+* Create an example of uploading to an REST service
+* Create andexample of uploading to google cloud storage
 * equalize language in names of functions and variables
-* make it really work on the showcase
-* Show server-side uploaded images (that will be fun!)
 * Friendly show thumbnails of other kinds of media/extensions
+* Upload status in the thumbails
 
-
-## Well... it is already useful
+## But, well... it is already useful
 
 If you need some solution like this, go ahead, you can already use it!
 

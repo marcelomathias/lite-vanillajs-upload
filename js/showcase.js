@@ -14,8 +14,8 @@ function criouElemento() {
 
     }
 }
-window.setInterval(checarArquivos, 5000);
-window.setTimeout(checarArquivos, 200);
+window.setInterval(checarArquivos, 7000);
+window.setTimeout(criouElemento, 200);
 
 
 function checarArquivos() {

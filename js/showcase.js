@@ -1,6 +1,6 @@
 var ultimoId = 0;
 var hostSHOWCASE = "https://www.longocaminho.com.br";
-//var hostSHOWCASE = "http://localhost";
+// var hostSHOWCASE = "http://localhost";
 
 function criouElemento() {
     if (document.querySelector("body")!=null) {
@@ -49,7 +49,8 @@ function checarArquivos() {
 
                 for (var i=0; i<data.length; i++) {
 
-                    var img = "<img src='data:image/png;base64, "+data[i].ConteudoBase64+"'>";
+                    //var img = "<img src='data:image/png;base64, "+data[i].ConteudoBase64+"'>";
+                    var img = "<img src='"+hostSHOWCASE+"/upload/downloadFile?id="+data[i].id+"'>";
                     var esteTr = document.createElement("tr");
                     esteTr.innerHTML = 
                         "<TD>" + data[i].DiretorioArquivo + "</TD><TD>" + data[i].NomeArquivo + "</TD><TD id='FDBKIMG" + data[i].id + "'>"+ img +"</TD>";
